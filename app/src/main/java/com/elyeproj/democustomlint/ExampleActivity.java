@@ -16,8 +16,13 @@ public class ExampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    void add(){}
-    void update(){}
+    void add(){
+
+    }
+
+    void update(){
+
+    }
     void delete(){}
     void substract(){}
 }

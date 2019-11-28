@@ -12,7 +12,9 @@ internal const val PRIORITY = 10 // Does not matter anyways within Lint.
 
 class MyIssueRegistry : IssueRegistry() {
     override val issues: List<Issue>
-        get() = listOf(ISSUE_ALERT_DIALOG_USAGE,
+        get() = listOf(ISSUE_METHOD_LINE_EXCEED,
+                ISSUE_CLASS_LINE_EXCEEDED,
+                ISSUE_ALERT_DIALOG_USAGE,
                 ISSUE_INVALID_IMPORT,
                 ISSUE_WRONG_LAYOUT_NAME,
                 ISSUE_WRONG_MENU_ID_FORMAT,
