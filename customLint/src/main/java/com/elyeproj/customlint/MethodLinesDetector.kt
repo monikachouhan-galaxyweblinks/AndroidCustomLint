@@ -12,6 +12,8 @@ import com.android.tools.lint.detector.api.Severity.WARNING
 import org.jetbrains.uast.UMethod
 import java.util.*
 
+const val MAX_LINE_IN_METHOD = 40
+
 val ISSUE_METHOD_LINE_EXCEED = Issue.create("MethodLinesExceed",
         "Only $MAX_LINE_IN_METHOD allow in method.",
         "Method should not use more than $MAX_LINE_IN_METHOD lines.",
@@ -28,8 +30,8 @@ class MethodLinesDetector : Detector(), Detector.UastScanner {
             val start = context.getLocation(node)?.start?.line
             val end = context.getLocation(node)?.end?.line
             val lineCount = end?.minus(start ?: 0)
-            if (lineCount ?: 0 > MAX_LINE_IN_METHOD && !node.name.contains("Activity",true) && !node.name.contains("Fragment",true)) {
-                context.report(ISSUE_METHOD_LINE_EXCEEDED, node,
+            if (lineCount ?: 0 > MAX_LINE_IN_METHOD && !node.name.contains("Activity", true) && !node.name.contains("Fragment", true)) {
+                context.report(ISSUE_METHOD_LINE_EXCEED, node,
                         context.getNameLocation(node),
                         "Method ${node.name} contains $lineCount line of code, should contain only $MAX_LINE_IN_METHOD line of code.")
 

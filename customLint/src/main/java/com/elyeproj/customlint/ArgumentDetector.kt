@@ -21,11 +21,11 @@ class ArgumentDetector : Detector(), Detector.UastScanner {
     class ArgumentHandler(private val context: JavaContext) :
             UElementHandler() {
         override fun visitClass(node: UClass) {
-            node.allMethods.forEach {
+            node.methods.forEach {
                 if (it.parameters.size > STANDARD_PARAMETER_SIZE) {
                     context.report(ISSUE_ARGUMENTS_EXCEEDED, node,
                             context.getNameLocation(node),
-                            "Only $STANDARD_PARAMETER_SIZE arguments in allow in method.")
+                            "${it.name} contains ${it.parameters.size} arguments, Only $STANDARD_PARAMETER_SIZE arguments in allow in method.")
                 }
             }
 
@@ -33,7 +33,7 @@ class ArgumentDetector : Detector(), Detector.UastScanner {
                 if (it.parameters.size > STANDARD_PARAMETER_SIZE) {
                     context.report(ISSUE_ARGUMENTS_EXCEEDED, node,
                             context.getNameLocation(node),
-                            "Only $STANDARD_PARAMETER_SIZE arguments in allow in constructor.")
+                            "${it.name} contains ${it.parameters.size} arguments, Only $STANDARD_PARAMETER_SIZE arguments in allow in constructor.")
                 }
             }
         }
